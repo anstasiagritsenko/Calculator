@@ -8,11 +8,11 @@ public class Main {
 
         int operatorCount = 0;
         for (String operator : operators) {
-            while (expression.contains(operator)) {
+            if (expression.contains(operator)) {
                 operatorCount++;
-                expression = expression.replaceFirst(operator, "");
             }
         }
+
         if (operatorCount > 1) {
             throw new IllegalArgumentException("Некорректное выражение");
         }
