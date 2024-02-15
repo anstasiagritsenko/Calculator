@@ -6,13 +6,26 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String expression = scanner.nextLine();
 
+        int operatorCount = 0;
+        for (String operator : operators) {
+            while (expression.contains(operator)) {
+                operatorCount++;
+                expression = expression.replaceFirst(operator, "");
+            }
+        }
+        if (operatorCount > 1) {
+            throw new IllegalArgumentException("Некорректное выражение");
+        }
+
         int expressionIndex = -1;
+
         for (int i = 0; i <= expression.length(); i++) {
             if (expression.contains(operators[i])) {
                 expressionIndex = i;
                 break;
             }
         }
+
         if (expressionIndex == -1) {
             throw new IllegalArgumentException("Некорректное выражение");
         }
